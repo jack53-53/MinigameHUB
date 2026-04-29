@@ -3,13 +3,17 @@ using UnityEngine;
 public class CoinScript : MonoBehaviour
 {
     PlayerScript PS;
-    private void OnCollisionEnter(Collision collision)
+    MeshRenderer MR;
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        //Debug.Log(other.gameObject.tag);
+        if (other.gameObject.CompareTag("Player"))
         {
-            PS = collision.gameObject.GetComponent<PlayerScript>();
+            PS = other.gameObject.GetComponent<PlayerScript>();
             PS.Pontos++;
             Debug.Log(PS.Pontos.ToString());
+            MR = this.gameObject.GetComponent<MeshRenderer>();
+            MR.enabled = false;
             Object.Destroy(this);
         }
     }

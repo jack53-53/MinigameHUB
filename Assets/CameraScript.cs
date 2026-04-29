@@ -4,6 +4,8 @@ public class CameraScript : MonoBehaviour
 {
     public bool Esquerda = false;
     public bool Direita = false;
+    public bool Baixo = false;
+    public bool Cima = false;
     private float speed;
     private GameObject P;
     private PlayerScript PS;
@@ -30,6 +32,14 @@ public class CameraScript : MonoBehaviour
         else if (Esquerda)
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
+        }
+        else if (Baixo)
+        {
+            transform.Translate(Vector3.down * speed * Time.deltaTime);
+        }
+        else if (Cima)
+        {
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
         }
     }
 }
