@@ -11,10 +11,10 @@ public class CoinScript : MonoBehaviour
         {
             PS = other.gameObject.GetComponent<PlayerScript>();
             PS.Pontos++;
-            Debug.Log(PS.Pontos.ToString());
+            //Debug.Log(PS.Pontos.ToString());
             MR = this.gameObject.GetComponent<MeshRenderer>();
             MR.enabled = false;
-            Object.Destroy(this);
+            Destroy(this);
         }
     }
 }

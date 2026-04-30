@@ -8,12 +8,15 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody RB;
     private Vector2 Mov;
     private bool Jump;
+    public float RotateSpeed;
     public float JumpForce;
     private Collider col;
     private float distToGround;
     public float TimerPulo;
     private float _TimerPulo;
     public int Pontos;
+    public float SpeedSprint;
+    private bool _Sprinting;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,9 +26,21 @@ public class PlayerScript : MonoBehaviour
         _TimerPulo = TimerPulo;
     }
 
+    public void ForcedJump()
+    {
+        RB.AddForce(Vector3.up * JumpForce * 0.7f, ForceMode.Impulse);
+        Jump = false;
+        _TimerPulo = TimerPulo;
+    }
+
     public void OnMove(InputValue e)
     {
         Mov = e.Get<Vector2>();
+    }
+
+    public void OnSprint(InputValue e)
+    {
+        _Sprinting = e.isPressed;
     }
 
     public void OnJump(InputValue e)
@@ -48,8 +63,15 @@ private void FixedUpdate()
     {
         Vector3 velocity = RB.linearVelocity;
 
-        velocity.x = Mov.x * Speed;
-
+        if (_Sprinting)
+        {
+            velocity.x = Mov.x * SpeedSprint;
+        }
+        else
+        {
+            velocity.x = Mov.x * Speed;
+        }
+        
         RB.linearVelocity = velocity;
 
         if (Jump && IsGrounded() && _TimerPulo < 0)
@@ -66,6 +88,42 @@ private void FixedUpdate()
         if (IsGrounded())
         {
             _TimerPulo -= Time.deltaTime;
+        }
+        if (velocity.x > 0)
+        {
+            Quaternion targetRotation = Quaternion.Euler(0, -260, 0);
+
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRotation,
+                RotateSpeed * Time.deltaTime
+            );
+        }
+        else if (velocity.x < 0)
+        {
+            Quaternion targetRotation = Quaternion.Euler(0, -90, 0);
+
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRotation,
+                RotateSpeed * Time.deltaTime
+            );
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if(Pontos <= 0)
+            {
+                Debug.Log("MORREU");
+            }
+            else
+            {
+                Pontos--;
+                Destroy(collision.gameObject);
+            }
         }
     }
 }
