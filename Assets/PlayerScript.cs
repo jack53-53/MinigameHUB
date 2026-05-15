@@ -17,9 +17,11 @@ public class PlayerScript : MonoBehaviour
     public int Pontos;
     public float SpeedSprint;
     private bool _Sprinting;
+    private Animator Anim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Anim = GetComponent<Animator>();
         RB = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         distToGround = col.bounds.extents.y;
@@ -36,6 +38,7 @@ public class PlayerScript : MonoBehaviour
     public void OnMove(InputValue e)
     {
         Mov = e.Get<Vector2>();
+        Anim.SetBool("Walking", true);
     }
 
     public void OnSprint(InputValue e)
@@ -108,6 +111,10 @@ private void FixedUpdate()
                 targetRotation,
                 RotateSpeed * Time.deltaTime
             );
+        }
+        else
+        {
+            Anim.SetBool("Walking", false);
         }
     }
 

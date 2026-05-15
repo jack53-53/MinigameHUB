@@ -38,10 +38,10 @@ public class EnemyScript : MonoBehaviour
         }
 
         bool wallLeft = Physics.Raycast(transform.position, Vector3.left, Parede + 0.1f, WallLayer);
-        bool wallRight = Physics.Raycast(transform.position, Vector3.right, Parede + 0.1f, WallLayer);
+        bool wallRight = Physics.Raycast(transform.position, Vector3.right, Parede + 0.5f, WallLayer);
 
-        //Debug.DrawRay(transform.position, Vector3.left * (Parede + 0.1f), Color.red);
-        //Debug.DrawRay(transform.position, Vector3.right * (Parede + 0.1f), Color.blue);
+        Debug.DrawRay(transform.position, Vector3.left * (Parede + 0.1f), Color.red);
+        Debug.DrawRay(transform.position, Vector3.right * (Parede + 0.1f), Color.blue);
 
         if (wallLeft)
         {
