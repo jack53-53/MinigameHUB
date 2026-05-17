@@ -11,13 +11,15 @@ public class MenuScript : MonoBehaviour
     private Variables v;
     public TextMeshProUGUI txt;
     private float WaitTime = 3f;
+    public TextMeshProUGUI txt2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         v = Variables.Instance;
         v.Jogando = false;
         Startou = false;
-        txt.text = v.Vidas.ToString();
+        txt.text = "Vidas: " + v.Vidas.ToString();
+        txt2.text = "Pontos: " + v.Pontos.ToString();
         v.InMatch = false;
         v.MTempo -= v.MTempo * 0.10f; //tirar 10% do tempo a cada vez que ele vai pro lobby
         v.Tempo = v.MTempo;

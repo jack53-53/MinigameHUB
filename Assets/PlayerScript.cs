@@ -59,7 +59,10 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Pontos >= 3)
+        {
+            v.Passou = true;
+        }
     }
 
     private bool IsGrounded()
@@ -101,27 +104,19 @@ private void FixedUpdate()
         {
             Quaternion targetRotation = Quaternion.Euler(0, -260, 0);
 
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation,
-                targetRotation,
-                RotateSpeed * Time.deltaTime
-            );
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
         }
         else if (velocity.x < 0)
         {
             Quaternion targetRotation = Quaternion.Euler(0, -90, 0);
 
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation,
-                targetRotation,
-                RotateSpeed * Time.deltaTime
-            );
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
         }
         else
         {
             Anim.SetBool("Walking", false);
         }//TODO
-        txt.text = "Tempo: " + v.Tempo.ToString();//object reference not set to a reference of a object??
+        // txt.text = "Tempo: " + v.Tempo.ToString();//object reference not set to a reference of a object??
         Debug.Log("Tempo" + v.Tempo.ToString());
     }
 
@@ -135,7 +130,9 @@ private void FixedUpdate()
             }
             else
             {
-                Pontos--;
+                // Pontos--;
+                //TODO: algo que faça o player gastar tempo
+                Debug.Log("TOMOU HIT");
                 Destroy(collision.gameObject);
             }
         }
