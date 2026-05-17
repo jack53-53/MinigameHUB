@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +19,8 @@ public class PlayerScript : MonoBehaviour
     public float SpeedSprint;
     private bool _Sprinting;
     private Animator Anim;
+    private Variables v;
+    public TextMeshProUGUI txt;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +29,8 @@ public class PlayerScript : MonoBehaviour
         col = GetComponent<Collider>();
         distToGround = col.bounds.extents.y;
         _TimerPulo = TimerPulo;
+        v = Variables.Instance;
+        v.InMatch = true;
     }
 
     public void ForcedJump()
@@ -115,7 +120,9 @@ private void FixedUpdate()
         else
         {
             Anim.SetBool("Walking", false);
-        }
+        }//TODO
+        txt.text = "Tempo: " + v.Tempo.ToString();//object reference not set to a reference of a object??
+        Debug.Log("Tempo" + v.Tempo.ToString());
     }
 
     private void OnCollisionEnter(Collision collision)
