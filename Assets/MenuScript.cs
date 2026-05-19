@@ -12,6 +12,7 @@ public class MenuScript : MonoBehaviour
     public TextMeshProUGUI txt;
     private float WaitTime = 3f;
     public TextMeshProUGUI txt2;
+    public float CoolDown;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,7 +28,7 @@ public class MenuScript : MonoBehaviour
 
     public void OnJump(InputValue e)
     {
-        if (v.Jogando == false)
+        if (v.Jogando == false && CoolDown <= 0)
         {
             Startou = true;
         }
@@ -40,7 +41,8 @@ public class MenuScript : MonoBehaviour
         {
             // por agora os niveis vao ser hardcoded
             v.Jogando = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + Random.Range(1,3));//aparentemente tem um jeito de fazer com que ele pegue o numero de cenas no editor automaticamente, eu nao entendi esse metodo.
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + Random.Range(1,6));//aparentemente tem um jeito de fazer com que ele pegue o numero de cenas no editor automaticamente, eu nao entendi esse metodo.
         }
+        CoolDown -= Time.fixedDeltaTime;
     }
 }

@@ -116,8 +116,8 @@ private void FixedUpdate()
         {
             Anim.SetBool("Walking", false);
         }//TODO
-        // txt.text = "Tempo: " + v.Tempo.ToString();//object reference not set to a reference of a object??
-        Debug.Log("Tempo" + v.Tempo.ToString());
+        txt.text = "Tempo: " + Math.Round(v.Tempo).ToString();
+        //Debug.Log("Tempo" + v.Tempo.ToString());
     }
 
     private void OnCollisionEnter(Collision collision)

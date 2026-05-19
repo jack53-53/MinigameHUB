@@ -753,6 +753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   txt: {fileID: 2058588017}
   txt2: {fileID: 228529762}
+  CoolDown: 1
 --- !u!4 &1447853201
 Transform:
   m_ObjectHideFlags: 0
