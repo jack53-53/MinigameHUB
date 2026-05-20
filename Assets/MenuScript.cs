@@ -41,7 +41,7 @@ public class MenuScript : MonoBehaviour
         {
             // por agora os niveis vao ser hardcoded
             v.Jogando = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + Random.Range(1,6));//aparentemente tem um jeito de fazer com que ele pegue o numero de cenas no editor automaticamente, eu nao entendi esse metodo.
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + Random.Range(1,7));//aparentemente tem um jeito de fazer com que ele pegue o numero de cenas no editor automaticamente, eu nao entendi esse metodo.
         }
         CoolDown -= Time.fixedDeltaTime;
     }

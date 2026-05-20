@@ -18,7 +18,7 @@ public class ButtonScript : MonoBehaviour
     {
         if(e.isPressed)
         {
-            v.Tempo = 0;
+            v.Falhou();
         }
     }
 
@@ -27,7 +27,7 @@ public class ButtonScript : MonoBehaviour
     {
         if(v.Tempo <= 1f)
         {
-            v.Passou = true;
+            v.Ganhou();
         }
         if(v.Tempo <= 3f)
         {

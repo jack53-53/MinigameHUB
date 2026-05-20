@@ -61,7 +61,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(Pontos >= 3)
         {
-            v.Passou = true;
+            v.Ganhou();
         }
     }
 

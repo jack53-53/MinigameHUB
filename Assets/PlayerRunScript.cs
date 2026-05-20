@@ -41,7 +41,7 @@ public class PlayerRunScript : MonoBehaviour
         if(metaCliques == Cliques)
         {
             //Debug.Log("PASSOU");
-            v.Passou = true;
+            v.Ganhou();
         }
     }
 }

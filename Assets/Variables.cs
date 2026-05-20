@@ -15,6 +15,7 @@ public class Variables : MonoBehaviour
     public int NumRondas;
     public bool Passou;
     public bool InMatch; //setar dentro do prefab do player dentro do nivel
+    public bool InverterCondicao;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -24,29 +25,55 @@ public class Variables : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        InverterCondicao = false;
     }
 
     private void FixedUpdate()
     {
         if (InMatch){
-            //Debug.Log(Tempo);
             Tempo -= Time.fixedDeltaTime * MultPlicadorTempo;
-            if(Tempo <= 0)
+            if(!InverterCondicao)
             {
-                Vidas--;
-                InMatch = false;
-                SceneManager.LoadScene("Main");
+                    if (Passou)
+                    {
+                        Pontos++;
+                    Passou = false;
+                        InMatch = false;
+                        SceneManager.LoadScene("Main");
+                    }
+                    else if (Tempo <= 0)
+                    {
+                        Vidas--;
+                    Passou = false;
+                    InMatch = false;
+                        SceneManager.LoadScene("Main");
+                    }
             }
-            else if(Passou == true)
+            else //se o jogo for de sobrevivencia, e depender do tempo acabar para o jogador ganhar
             {
-                InMatch = false;
-                SceneManager.LoadScene("Main");
-                Pontos++;
+                if (Tempo >= 0)
+                {
+                    InMatch = false;
+                    InverterCondicao = false;
+                    Pontos++;
+                    SceneManager.LoadScene("Main");
+                }
+                else
+                {
+                    Passou = false;
+                }
             }
         }
-        else
-        {
-            Passou = false;
-        }
+    }
+    public void Falhou()
+    {
+        Vidas--;
+        SceneManager.LoadScene("Main");
+    }
+    public void Ganhou()
+    {
+        InMatch = false;
+        Pontos++;
+        SceneManager.LoadScene("Main");
     }
 }

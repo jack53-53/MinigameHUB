@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: ec36a233c8779434e913f77bbef1cfe5
   - enabled: 1
+    path: Assets/Scenes/MicroGame4.unity
+    guid: 3767fc03df579e64db1d9406f870389f
+  - enabled: 1
     path: Assets/Scenes/DevRoom.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
