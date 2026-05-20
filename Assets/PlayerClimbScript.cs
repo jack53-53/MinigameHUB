@@ -29,6 +29,7 @@ public class PlayerClimbScript : MonoBehaviour
     {
         if (Mathf.Round(v.Tempo) % 2 == 0)
         {
+            Debug.Log("PAR");
             DescerTodos();
         }
         if (Mov.x < 0f && CoolDownSwitch <= 0)
@@ -80,9 +81,11 @@ public class PlayerClimbScript : MonoBehaviour
     void DescerTodos() //n ta descendo, nao sei se o problema é aqui ou em outro lugar
     {
         GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Enemy");
+        Debug.Log("TENTANDO PEGAR OBJETO");
 
         foreach (GameObject obj in allObjects)
         {
+            Debug.Log("");
             DescedorScript descerScript = obj.GetComponent<DescedorScript>();
 
             if (descerScript != null)
